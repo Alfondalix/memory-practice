@@ -4,25 +4,13 @@
     <div class="container">
       <h1 class="title">Choose a game-mode</h1>
       <div class="buttonsContainer">
-        <button
-          type="button"
-          @click="gameMode(mode[0])"
-          class="btn btn-warning number"
-        >
+        <button type="button" @click="test" class="btn btn-warning number">
           Easy
         </button>
-        <button
-          type="button"
-          @click="gameMode(mode[1])"
-          class="btn btn-primary number"
-        >
+        <button type="button" @click="test" class="btn btn-primary number">
           Medium
         </button>
-        <button
-          type="button"
-          @click="gameMode(mode[2])"
-          class="btn btn-info number"
-        >
+        <button type="button" @click="test" class="btn btn-info number">
           God Mode
         </button>
       </div>
@@ -48,7 +36,7 @@
 <script>
 import Vue from "vue";
 import Header from "../layouts/Header.vue";
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
 import { ACTIONS_CONSTANTS } from "../../store/modules/memory/constants";
 import { MUTATIONS_CONSTANTS } from "../../store/modules/memory/constants";
 
@@ -63,6 +51,7 @@ const Component = Vue.extend({
       flipped: (state) => state["memory"].cardFlipped,
       mode: (state) => state["memory"].mode,
     }),
+    ...mapGetters({ test: "setGameMode" }),
   },
   methods: {
     ...mapActions([ACTIONS_CONSTANTS.GET_CARDS, ACTIONS_CONSTANTS.CHECK_CARDS]),
